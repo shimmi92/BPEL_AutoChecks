@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://topdown.soacourse.unsw.edu.au" name="GSSTopdown" targetNamespace="http://topdown.soacourse.unsw.edu.au">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://topdown.soacourse.unsw.edu.au" version="1.0">
+
+  <xs:element name="GSCheckRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="lastName" type="xs:string"/>
+        <xs:element name="firstName" type="xs:string"/>
+        <xs:element name="regoNumber" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="GSCheckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="lastNameResponse" type="xs:string"/>
+        <xs:element name="firstNameResponse" type="xs:string"/>
+        <xs:element name="regoNumberResponse" type="xs:string"/>
+        <xs:element name="paidFlag" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GSCheck">
+    <wsdl:part element="ns1:GSCheckRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GSCheckResponse">
+    <wsdl:part element="ns1:GSCheckResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GSSTopdown">
+    <wsdl:operation name="GSCheck">
+      <wsdl:input message="ns1:GSCheck" name="GSCheck">
+    </wsdl:input>
+      <wsdl:output message="ns1:GSCheckResponse" name="GSCheckResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

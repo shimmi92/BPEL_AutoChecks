@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:autochecker="http://soacourse.unsw.edu.au/autochecker" xmlns:gss="http://gss/">
+  <process name="autochecker:AutoChecks">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="autochecker:AutoChecksService" port="AutoChecksPort"/>
+    </provide>
+    <invoke partnerLink="gschecker">
+      <service name="gss:GSSTopdownImplService" port="GSSTopdownImplPort"/>
+    </invoke>
+  </process>
+</deploy>

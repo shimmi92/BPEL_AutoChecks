@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://gss/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http"
+	xmlns:ns1="http://topdown.soacourse.unsw.edu.au" name="GSSTopdownImplService"
+	targetNamespace="http://gss/">
+	<wsdl:import
+		location="greenSlipService.wsdl"
+		namespace="http://topdown.soacourse.unsw.edu.au">
+	</wsdl:import>
+	<wsdl:binding name="GSSTopdownImplServiceSoapBinding"
+		type="ns1:GSSTopdown">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GSCheck">
+			<soap:operation soapAction="http://topdown.soacourse.unsw.edu.au/GSCheck"
+				style="document" />
+			<wsdl:input name="GSCheck">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GSCheckResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="GSSTopdownImplService">
+		<wsdl:port binding="tns:GSSTopdownImplServiceSoapBinding"
+			name="GSSTopdownImplPort">
+			<soap:address location="http://localhost:8080/GreenSlipService/GSCheck" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

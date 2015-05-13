@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://psp.soacourse.unsw.edu.au" name="PSProviders" targetNamespace="http://psp.soacourse.unsw.edu.au">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://psp.soacourse.unsw.edu.au" version="1.0">
+
+  <xs:element name="PSCheckRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="lastName" type="xs:string"/>
+        <xs:element name="firstName" type="xs:string"/>
+        <xs:element name="regoNumber" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PSCheckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="lastNameResponse" type="xs:string"/>
+        <xs:element name="firstNameResponse" type="xs:string"/>
+        <xs:element name="regoNumberResponse" type="xs:string"/>
+        <xs:element name="paidFlag" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="vehicleAgeRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="lastName" type="xs:string"/>
+        <xs:element name="firstName" type="xs:string"/>
+        <xs:element name="regoNumber" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="vehicleAgeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="age" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="vehicleAgeResponse">
+    <wsdl:part element="ns1:vehicleAgeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PSCheck">
+    <wsdl:part element="ns1:PSCheckRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="vehicleAge">
+    <wsdl:part element="ns1:vehicleAgeRequest" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PSCheckResponse">
+    <wsdl:part element="ns1:PSCheckResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PSProviders">
+    <wsdl:operation name="vehicleAge">
+      <wsdl:input message="ns1:vehicleAge" name="vehicleAge">
+    </wsdl:input>
+      <wsdl:output message="ns1:vehicleAgeResponse" name="vehicleAgeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PSCheck">
+      <wsdl:input message="ns1:PSCheck" name="PSCheck">
+    </wsdl:input>
+      <wsdl:output message="ns1:PSCheckResponse" name="PSCheckResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://psp/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http"
+	xmlns:ns1="http://psp.soacourse.unsw.edu.au" name="PSProvidersImplService"
+	targetNamespace="http://psp/">
+	<wsdl:import
+		location="pinkSlipService.wsdl"
+		namespace="http://psp.soacourse.unsw.edu.au">
+	</wsdl:import>
+	<wsdl:binding name="PSProvidersImplServiceSoapBinding"
+		type="ns1:PSProviders">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="vehicleAge">
+			<soap:operation soapAction="http://psp.soacourse.unsw.edu.au/vehicleAge"
+				style="document" />
+			<wsdl:input name="vehicleAge">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="vehicleAgeResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PSCheck">
+			<soap:operation soapAction="http://psp.soacourse.unsw.edu.au/PSCheck"
+				style="document" />
+			<wsdl:input name="PSCheck">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="PSCheckResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PSProvidersImplService">
+		<wsdl:port binding="tns:PSProvidersImplServiceSoapBinding"
+			name="PSProvidersImplPort">
+			<soap:address location="http://localhost:8080/PinkSlipProviders/PSPChecks" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

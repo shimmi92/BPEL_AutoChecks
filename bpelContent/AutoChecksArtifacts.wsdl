@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<definitions name="AutoChecks"
+        targetNamespace="http://soacourse.unsw.edu.au/autochecker"
+        xmlns:tns="http://soacourse.unsw.edu.au/autochecker"
+        xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:gschecker="http://topdown.soacourse.unsw.edu.au"
+       
+        >
+    <import namespace="http://topdown.soacourse.unsw.edu.au"
+            location="greenSlipService.wsdl"/>
+    <import namespace="http://psp.soacourse.unsw.edu.au"
+            location="pinkSlipService.wsdl"/>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="AutoChecks">
+        <plnk:role name="gschecker" portType="gschecker:GSSTopdown"/>
+   
+    </plnk:partnerLinkType>
+   
+    
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     BINDING DEFINITION - Defines the message format and protocol details
+     for a web service.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <binding name="AutoChecksBinding" type="gschecker:GSSTopdown">
+    	<soap:binding style="document"
+    		transport="http://schemas.xmlsoap.org/soap/http" />
+    	<operation name="GSCheck">
+    		<soap:operation
+    			soapAction="http://topdown.soacourse.unsw.edu.au/GSCheck" />
+    		<input>
+    			<soap:body use="literal" />
+    		</input>
+    		<output>
+    			<soap:body use="literal" />
+    		</output>
+    	</operation>
+    </binding>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     SERVICE DEFINITION - A service groups a set of ports into
+     a service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <service name="AutoChecksService">
+    	<port name="AutoChecksPort" binding="tns:AutoChecksBinding">
+    		<soap:address location="http://localhost:6060/ode/processes/AutoChecksService" />
+    	</port>
+    </service>
+</definitions>
